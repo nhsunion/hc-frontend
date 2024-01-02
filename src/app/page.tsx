@@ -1,7 +1,8 @@
-import { HelloWorld } from "./components/HelloWorld"
+import Login from "./components/Login"
+
 
 export default function Home() {
   return (
-    <HelloWorld />
+    <Login />
   )
 }
