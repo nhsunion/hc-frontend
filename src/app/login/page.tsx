@@ -11,9 +11,11 @@ export default function LoginForm() {
           href="#"
         >
           <Image
-            className="w-50 h-64 mr-2"
+            className="mr-2"
             src="/hclogo.png"
             alt="logo"
+            width={290}
+            height={400}
           />
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
