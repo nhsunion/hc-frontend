@@ -7,3 +7,7 @@ export const header = {
     justifyContent: 'center',
     padding: '1.5rem'
 }
+
+export const button_style = {
+    "backgroundColor": "#5e61f2"
+}
