@@ -1,6 +1,7 @@
+'use client'
 import { Button } from "@mui/material"
 import Link from "next/link"
-import { button_style } from "../utils/Styling"
+import { button_style } from "../utils/styling"
 
 export default function RegisterForm() {
     return (

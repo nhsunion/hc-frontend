@@ -9,5 +9,5 @@ export const header = {
 }
 
 export const button_style = {
-    "backgroundColor": "#5e61f2"
+    backgroundColor: "#5e61f2",
 }

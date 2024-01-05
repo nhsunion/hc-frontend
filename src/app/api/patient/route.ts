@@ -1,6 +1,6 @@
 
 
-export async function GET(endpoint: string) {
+export async function GetPatient(endpoint: string) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`, {
         method: 'GET',
         headers: {
