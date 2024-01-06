@@ -3,7 +3,7 @@ import { Button } from "@mui/material"
 import Link from "next/link"
 import Logo from "../components/logo"
 import { useRouter } from "next/navigation"
-import { button_style } from "../utils/styling"
+import { button_style } from "../utils/Styling"
 
 export default function LoginForm() {
   const router = useRouter()
