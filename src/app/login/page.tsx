@@ -83,7 +83,7 @@ export default function LoginForm() {
                 Login</Button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don&apos;t have an account yet?{" "}
-                <Link href="/"
+                <Link href="/patient_register"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                   Sign up
                 </Link>
@@ -91,13 +91,6 @@ export default function LoginForm() {
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Healtcare Personell?{" "}
                 <Link href="/register"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-                  Register here
-                </Link>
-              </p>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Patient?{" "}
-                <Link href="/patient_register"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                   Register here
                 </Link>
