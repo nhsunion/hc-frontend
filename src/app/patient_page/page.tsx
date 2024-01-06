@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from "react"
-import { GetPatient } from "../api/patient/route"
 import { Patient } from "../utils/interface"
 import Logo from "../components/logo"
 
@@ -10,14 +9,10 @@ export default function PatientPage() {
     const [patients, setPatients] = useState<Patient[]>([])
 
     useEffect(() => {
-        GetPatient('/api/login')
-            .then(data => {
-                setPatients(data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`) // TODO: create api folder and move the fetch there
+            .then(response => response.json())
+            .then(data => setPatients(data))
+            .catch(error => console.log(error))
     }, [])
 
     return (
