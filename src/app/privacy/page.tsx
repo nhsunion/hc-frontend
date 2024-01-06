@@ -1,19 +1,12 @@
-import Link from "next/link"
-import Image from "next/image"
+'use client'
+import Logo from "../components/logo"
 
 
 export default function PrivacyPolicy() {
     return (
         <article>
             <div className="flex justify-center p-1">
-                <Link href="/login">
-                        <Image
-                            src="/hclogo.png"
-                            alt="logo"
-                            width={290}
-                            height={400} 
-                        />
-                </Link>
+            <Logo />
             </div>
             <h1 className="text-5xl p-8">Privacy Policy</h1>
             <p className="text-lg p-8">

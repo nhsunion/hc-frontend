@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "@mui/material"
 import Link from "next/link"
 import { button_style } from "../utils/Styling"
@@ -47,7 +48,7 @@ export default function RegisterForm() {
                 </div>
                 <div className="text-grey-dark mt-6">
                     Already have an account?
-                    <Link className="no-underline border-b border-blue text-blue" href="login">
+                    <Link className="no-underline border-b border-blue text-blue" href="/login">
                         Log in
                     </Link>.
                 </div>
