@@ -1,9 +1,9 @@
 'use client'
 import { Button } from "@mui/material"
 import Link from "next/link"
-import { button_style } from "@/app/utils/styling"
 import Logo from "../components/logo"
 import { useRouter } from "next/navigation"
+import { button_style } from "../utils/styling"
 
 export default function LoginForm() {
   const router = useRouter()
