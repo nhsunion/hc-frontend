@@ -4,9 +4,34 @@ import Link from "next/link"
 import Logo from "../components/logo"
 import { useRouter } from "next/navigation"
 import { button_style } from "../utils/Styling"
+import { FormEvent, useState } from "react"
 
 export default function LoginForm() {
   const router = useRouter()
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+
+  const handleSubmit = async (e : FormEvent) => {
+    e.preventDefault()
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
+      body: JSON.stringify({
+        username: username,
+        password: password
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    })
+    const token = await res.json()
+    if (token) {
+      router.push('/patient_page')
+    } else {
+      alert("Login failed")
+    }
+  }
+
+
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -16,20 +41,19 @@ export default function LoginForm() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign in to your account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form className="space-y-4 md:space-y-6">
               <div>
                 <label
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Your email
+                  Username
                 </label>
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
+                  type="text"
+                  onChange={e => setUsername(e.target.value)}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="name@company.com"
+                  placeholder="Username or Email"
                 />
               </div>
               <div>
@@ -41,8 +65,7 @@ export default function LoginForm() {
                 </label>
                 <input
                   type="password"
-                  name="password"
-                  id="password"
+                  onChange={e => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
@@ -76,9 +99,7 @@ export default function LoginForm() {
               <Button
                 variant="contained"
                 style={button_style}
-                onClick={() => {
-                  router.push('/patient_page')
-                }}
+                onClick={handleSubmit}
               >
                 Login</Button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
