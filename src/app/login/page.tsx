@@ -11,7 +11,7 @@ export default function LoginForm() {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
-  const handleSubmit = async (e : FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
       body: JSON.stringify({
@@ -23,11 +23,13 @@ export default function LoginForm() {
       },
       method: 'POST'
     })
-    const token = await res.json()
-    if (token) {
+
+    if (res.status === 200) {
+      const token = await res.json()
       router.push('/patient_page')
-    } else {
-      alert("Login failed")
+    }
+    else {
+      alert("Wrong username or password")
     }
   }
 
