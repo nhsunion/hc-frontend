@@ -1,9 +1,9 @@
 'use client'
 import { Button } from "@mui/material"
 import Link from "next/link"
-import Logo from "../components/logo"
+import Logo from "../../components/logo"
 import { useRouter } from "next/navigation"
-import { button_style } from "../utils/Styling"
+import { button_style } from "../../utils/Styling"
 import { FormEvent, useState } from "react"
 
 export default function LoginForm() {
@@ -113,7 +113,7 @@ export default function LoginForm() {
               </p>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Healtcare Personell?{" "}
-                <Link href="/register"
+                <Link href="/provider_register"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                   Register here
                 </Link>

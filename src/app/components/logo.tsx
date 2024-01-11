@@ -6,7 +6,7 @@ import Image from "next/image"
 export default function Logo() {
     return (
         <Link
-            href="/login"
+            href="/#"
         >
             <Image
                 className="mr-2"
