@@ -13,7 +13,7 @@ export default function ProviderLogin() {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/provider/login`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login/provider`, {
             body: JSON.stringify({
                 username: username,
                 password: password
