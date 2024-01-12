@@ -19,3 +19,7 @@ export interface Provider {
     address: string
     username: string
 }
+
+export interface NavBarProps {
+    currentPath: string
+}
