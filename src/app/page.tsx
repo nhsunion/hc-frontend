@@ -1,8 +1,8 @@
-import LoginForm from "./(auth)/login/page"
+import PatientLogin from "./(auth)/patient_login/page"
 
 
 export default function Home() {
   return (
-    <LoginForm />
+    <PatientLogin />
   )
 }

@@ -5,15 +5,16 @@ import Logo from "../../components/logo"
 import { useRouter } from "next/navigation"
 import { button_style } from "../../utils/Styling"
 import { FormEvent, useState } from "react"
+import NavBar from "@/app/components/navbar"
 
-export default function LoginForm() {
+export default function PatientLogin() {
   const router = useRouter()
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login/patient`, {
       body: JSON.stringify({
         username: username,
         password: password
@@ -21,11 +22,11 @@ export default function LoginForm() {
       headers: {
         'Content-Type': 'application/json'
       },
-      method: 'POST'
+      method: 'POST',
+      credentials: 'include'
     })
 
     if (res.status === 200) {
-      const token = await res.json()
       router.push('/patient_page')
     }
     else {
@@ -36,6 +37,7 @@ export default function LoginForm() {
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
+      <NavBar currentPath="/patient_login"/>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <Logo />
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
