@@ -21,11 +21,11 @@ export default function LoginForm() {
       headers: {
         'Content-Type': 'application/json'
       },
-      method: 'POST'
+      method: 'POST',
+      credentials: 'include'
     })
 
     if (res.status === 200) {
-      const token = await res.json()
       router.push('/patient_page')
     }
     else {
