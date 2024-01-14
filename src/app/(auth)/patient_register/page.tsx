@@ -11,6 +11,8 @@ export default function RegisterForm() {
     const [fullName, setFullName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [username, setUsername] = useState<string>('')
+
 
 
     const handleSubmit = async (e: FormEvent) => {
@@ -19,7 +21,8 @@ export default function RegisterForm() {
             body: JSON.stringify({
                 fullName: fullName,
                 email: email,
-                password: password
+                password: password,
+                username: username
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -50,14 +53,15 @@ export default function RegisterForm() {
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         placeholder="Email" />
                     <input
+                        type="text"
+                        onChange={e => setUsername(e.target.value)}
+                        className="block border border-grey-light w-full p-3 rounded mb-4"
+                        placeholder="username" />
+                    <input
                         type="password"
                         onChange={e => setPassword(e.target.value)}
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         placeholder="Password" />
-                    <input
-                        type="password"
-                        className="block border border-grey-light w-full p-3 rounded mb-4"
-                        placeholder="Confirm Password" />
                     <Button
                         variant="contained"
                         onClick={handleSubmit}
