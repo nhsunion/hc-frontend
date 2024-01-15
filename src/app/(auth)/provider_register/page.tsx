@@ -1,4 +1,3 @@
-// Import necessary modules and components
 import { useState, FormEvent } from 'react';
 import { Button } from '@mui/material';
 import Link from 'next/link';
@@ -7,29 +6,26 @@ import { button_style } from '../../utils/Styling';
 
 export default function RegisterForm() {
     const router = useRouter();
-    // State for form fields
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    // State for error and loading
     const [error, setError] = useState('');
     const [isLoading, setLoading] = useState(false);
 
-    // Handle form submission
+    
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError('');
 
-        // Basic client-side validation
         if (password !== confirmPassword) {
             setError('Passwords do not match');
             setLoading(false);
             return;
         }
 
-        // API call
+    
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register/patient`, {
                 body: JSON.stringify({ fullName, email, password }),
