@@ -23,3 +23,7 @@ export interface Provider {
 export interface NavBarProps {
     currentPath: string
 }
+
+export interface Bearer {
+    token: string
+}

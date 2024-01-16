@@ -1,29 +1,38 @@
 'use client'
-import { SetStateAction, useEffect, useState } from "react"
-import { Patient } from "../utils/interface"
-import Logo from "../components/logo"
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
+import { memo, useEffect, useState } from "react";
+import Logo from "../components/logo";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function PatientPage() {
-    const [patients, setPatients] = useState<Patient[]>([])
-    
+
+    const router = useRouter();
+    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`) // TODO: create api folder and move the fetch there
-            .then(response => response.json())
-            .then(data => setPatients(data))
-            .catch(error => console.log(error))
-    }, [])
+        const token = Cookies.get('jwt')
+
+        if (token === null) {
+
+            console.log('No token, redirecting to /provider_login');
+            router.push('/patient_login');
+        }
+
+    }, []);
+   
+
+    const handleDateChange = (newDate: Date | null) => {
+        setSelectedDate(newDate);
+    };
+
     return (
         <div>
             <Logo />
             <h1 className="text-5xl p-5">Welcome:</h1>
-            {patients.map((patient, index) => (
-                <div key={index} className="text-3xl">
-                    {patient.name}
-                </div>
-            ))}
+
             <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 localeText={{
@@ -31,8 +40,8 @@ export default function PatientPage() {
                     calendarWeekNumberText: (weekNumber) => `${weekNumber}.`,
                 }}
             >
-                <DateCalendar displayWeekNumber />
+                <DateCalendar displayWeekNumber onChange={handleDateChange} />
             </LocalizationProvider>
         </div>
-    )
+    );
 }
