@@ -1,3 +1,4 @@
+'use client'
 import { useState, FormEvent } from "react"
 import { Button } from "@mui/material"
 import Link from "next/link"
