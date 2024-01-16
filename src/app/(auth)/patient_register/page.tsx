@@ -31,7 +31,7 @@ export default function RegisterForm() {
             router.push('/patient_login')
         }
         else {
-            alert("Error")
+            alert("Something went wrong, please try again!")
         }
     }
     return (
