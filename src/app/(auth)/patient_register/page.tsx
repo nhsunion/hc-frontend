@@ -8,32 +8,34 @@ import { FormEvent, useState } from "react"
 
 export default function RegisterForm() {
     const router = useRouter()
-  const [fullName, setFullName] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+    const [fullName, setFullName] = useState<string>('')
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [username, setUsername] = useState<string>('')
 
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, {
-      body: JSON.stringify({
-        fullName: fullName,
-        email: email,
-        password: password
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST',
-      credentials: 'include'
-    })
 
-    if (res.status === 200) {
-      const token = await res.json()
-      router.push('/login')
-    }
-    else {
-      alert("Error")
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault()
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register/patient`, {
+            body: JSON.stringify({
+                fullName: fullName,
+                email: email,
+                password: password,
+                username: username
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST'
+        })
+
+        if (res.status === 200) {
+            router.push('/patient_login')
+        }
+        else {
+            alert("Error")
+        }
     }
     return (
         <div className="bg-grey-lighter min-h-screen flex flex-col">
@@ -51,14 +53,15 @@ export default function RegisterForm() {
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         placeholder="Email" />
                     <input
+                        type="text"
+                        onChange={e => setUsername(e.target.value)}
+                        className="block border border-grey-light w-full p-3 rounded mb-4"
+                        placeholder="username" />
+                    <input
                         type="password"
                         onChange={e => setPassword(e.target.value)}
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         placeholder="Password" />
-                    <input
-                        type="password"
-                        className="block border border-grey-light w-full p-3 rounded mb-4"
-                        placeholder="Confirm Password" />
                     <Button
                         variant="contained"
                         onClick={handleSubmit}
@@ -75,5 +78,4 @@ export default function RegisterForm() {
             </div>
         </div>
     )
-}
 }
