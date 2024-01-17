@@ -5,21 +5,17 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import Cookies from "universal-cookie";
 
 export default function PatientPage() {
 
     const router = useRouter();
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-    const checkToken = () => {
-        const token = Cookies.get('jwt');
-        if (!token) {
-            router.push('/provider_login');
-        }
-    }
+    const cookies = new Cookies()
+    const token = cookies.get('jwt')
+    console.log('Token:', token)
 
-    checkToken()
     const handleDateChange = (newDate: Date | null) => {
         setSelectedDate(newDate)
     }
