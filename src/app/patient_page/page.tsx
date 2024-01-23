@@ -10,7 +10,7 @@ export default function PatientPage() {
     const [patients, setPatients] = useState<Patient[]>([])
     
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`) // TODO: create api folder and move the fetch there
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/current`) // TODO: create api folder and move the fetch there
             .then(response => response.json())
             .then(data => setPatients(data))
             .catch(error => console.log(error))
