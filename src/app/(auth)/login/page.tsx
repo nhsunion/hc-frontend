@@ -5,16 +5,17 @@ import Logo from "../../components/logo"
 import { useRouter } from "next/navigation"
 import { button_style } from "../../utils/Styling"
 import { FormEvent, useState } from "react"
-import NavBar from "@/app/components/navbar"
+import { UserRole } from "@/app/utils/interface"
 
-export default function PatientLogin() {
+export default function Login() {
   const router = useRouter()
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login/patient`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
       body: JSON.stringify({
         username: username,
         password: password
@@ -25,19 +26,23 @@ export default function PatientLogin() {
       method: 'POST',
       credentials: 'include'
     })
-
-    if (res.status === 200) {
-      router.push('/patient_page')
-    }
-    else {
-      alert("Wrong username or password")
-    }
+      .then((response) => response.json())
+      .then((data: UserRole) => {
+        if (data.role === "patient") {
+          router.push('/patient_page')
+        }
+        else if (data.role === "provider") {
+          router.push('/provider_page')
+        }
+        else {
+          alert("Wrong username or password")
+        }
+      })
   }
 
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
-      <NavBar currentPath="/patient_login"/>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <Logo />
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
