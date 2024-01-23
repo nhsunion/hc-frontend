@@ -24,9 +24,6 @@ export interface NavBarProps {
     currentPath: string
 }
 
-export interface Bearer {
-    token: string
-}
 export interface UserRole{
     role: string
     username: string
