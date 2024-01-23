@@ -1,23 +1,23 @@
-"use client";
-import { useState, FormEvent } from "react";
-import { Button } from "@mui/material";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { button_style } from "../../utils/Styling";
+"use client"
+import { useState, FormEvent } from "react"
+import { Button } from "@mui/material"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { button_style } from "../../utils/Styling"
 
 export default function RegisterForm() {
-  const router = useRouter();
+  const router = useRouter()
 
-  const [fullName, setFullName] = useState("");
-  const [title, setTitle] = useState("");
-  const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("")
+  const [title, setTitle] = useState("")
+  const [address, setAddress] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/register/provider`,
@@ -39,9 +39,9 @@ export default function RegisterForm() {
     );
 
     if (res.status === 200) {
-      router.push("/provider_login");
+      router.push("/")
     } else {
-      alert("Something went wrong, please try again!");
+      alert("Something went wrong, please try again!")
     }
   };
 
@@ -134,5 +134,5 @@ export default function RegisterForm() {
         </div>
       </div>
     </div>
-  );
+  )
 }

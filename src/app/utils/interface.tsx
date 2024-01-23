@@ -21,7 +21,7 @@ export interface Provider {
 }
 
 export interface NavBarProps {
-    currentPath: string
+    username: string
 }
 
 export interface UserRole{
