@@ -23,3 +23,8 @@ export interface Provider {
 export interface NavBarProps {
     currentPath: string
 }
+
+export interface UserRole{
+    role: string
+    username: string
+}
