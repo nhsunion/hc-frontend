@@ -1,15 +1,12 @@
 'use client'
-import { SetStateAction, useEffect, useState } from "react"
-import { Patient, UserRole } from "../utils/interface"
+import { useEffect, useState } from "react"
+import { UserRole } from "../utils/interface"
 import Logo from "../components/logo"
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { useRouter } from "next/navigation"
+import Navbar from "@/app/components/navbar"
 
 export default function ProviderPage() {
-    const [patients, setPatients] = useState<Patient[]>([])
-    const [user, setUser] = useState<UserRole>()
+    const [user, setUser] = useState<UserRole | null>(null)
     const router = useRouter()
     
     useEffect(() => {
@@ -32,22 +29,9 @@ export default function ProviderPage() {
 
     return (
         <div>
+            <Navbar username= {user ? user.username : ''}/>
             <Logo />
-            <h1 className="text-5xl p-5">Welcome: { user?.role}</h1>
-            {patients.map((patient, index) => (
-                <div key={index} className="text-3xl">
-                    {patient.name}
-                </div>
-            ))}
-            <LocalizationProvider
-                dateAdapter={AdapterDayjs}
-                localeText={{
-                    calendarWeekNumberHeaderText: '#',
-                    calendarWeekNumberText: (weekNumber) => `${weekNumber}.`,
-                }}
-            >
-                <DateCalendar displayWeekNumber />
-            </LocalizationProvider>
+            <h1 className="text-5xl p-5">Welcome: { user?.username}</h1>
         </div>
     )
 }

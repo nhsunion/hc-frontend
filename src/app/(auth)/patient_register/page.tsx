@@ -31,7 +31,7 @@ export default function RegisterForm() {
         })
 
         if (res.status === 200) {
-            router.push('/patient_login')
+            router.push('/')
         }
         else {
             alert("Error")

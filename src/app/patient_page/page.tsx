@@ -6,12 +6,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { useRouter } from "next/navigation"
+import Navbar from "@/app/components/navbar"
 
 
 
 export default function PatientPage() {
-    const [patients, setPatients] = useState<Patient[]>([])
-    const [user, setUser] = useState<UserRole>()
+    const [user, setUser] = useState<UserRole | null>(null)
     const router = useRouter()
 
     const AppointmentsList = () => {
@@ -56,11 +56,7 @@ export default function PatientPage() {
             <div>
                 <Logo />
                 <h1 className="text-5xl p-5">Welcome: {user?.role}</h1>
-                {patients.map((patient, index) => (
-                    <div key={index} className="text-3xl">
-                        {patient.name}
-                    </div>
-                ))}
+                
                 <div>
                     <h1>Available Appointments</h1>
                     <button onClick={fetchAppointments}>Fetch Appointments</button>
