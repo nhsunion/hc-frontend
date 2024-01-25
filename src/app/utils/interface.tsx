@@ -25,6 +25,16 @@ export interface NavBarProps {
 }
 
 export interface UserRole{
+    id: number
     role: string
     username: string
+}
+
+export interface Appointment {
+    id: number
+    date: Date
+    patientId?: number
+    patientName: string
+    providerId: number
+    providerName: string
 }
